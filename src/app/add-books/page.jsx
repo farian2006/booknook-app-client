@@ -99,6 +99,7 @@ export default function AddBooksPage() {
                       <SelectItem value="non-fiction">Non-Fiction</SelectItem>
                       <SelectItem value="mystery">Mystery</SelectItem>
                       <SelectItem value="romance">Romance</SelectItem>
+                        <SelectItem value="history">History</SelectItem>
                       <SelectItem value="science-fiction">
                         Science Fiction
                       </SelectItem>
