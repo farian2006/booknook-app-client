@@ -20,8 +20,8 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", icon: BookOpen },
-  { href: "/books", label: "All Books", icon: BookMarked },
-  { href: "/books/new", label: "Add Book", icon: Plus },
+  { href: "/all-books", label: "All Books", icon: BookMarked },
+  { href: "/add-books", label: "Add Book", icon: Plus },
   { href: "/my-books", label: "My Books", icon: CircleUserRound },
   { href: "/borrows", label: "My Borrows", icon: Repeat2 },
 ];

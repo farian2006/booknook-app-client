@@ -18,7 +18,7 @@ const categoryVariantMap = {
   Adventure: "adventure",
 };
 
-export default async function AllBooksPage() {
+export default async function AllBooks() {
   const res = await fetch("http://localhost:5000/books", {
     cache: "no-store",
   });
@@ -26,14 +26,14 @@ export default async function AllBooksPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-     <div className="flex flex-col items-center justify-center mb-8">
-     <Image
-        src="/assests/allBooks.png"
-        alt="Bookshelf"
-        width={1000}
-        height={200}
-        className="mb-6 rounded-lg object-cover"
-      />    
+      <div className="flex flex-col items-center justify-center mb-8">
+        <Image
+          src="/assests/allBooks.png"
+          alt="All Books"
+          width={900}
+          height={100}
+          className="object-cover rounded-4xl object-center"  
+      />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {books.map((book) => (
@@ -51,7 +51,7 @@ export default async function AllBooksPage() {
               <div className="flex-1 flex flex-col justify-center min-w-0 ">
                 <div>
                   <Link
-                    href={`/books/${book._id}`}
+                    href={`/all-books/${book._id}`}
                     className="block text-foreground hover:text-primary transition-colors"
                   >
                     <h3 className="text-lg font-semibold leading-tight">
@@ -68,9 +68,12 @@ export default async function AllBooksPage() {
                     {book.category}
                   </Badge>
                 </div>
-                <Button nativeButton = {false}
+                <Button
+                  nativeButton={false}
                   className="mt-4 w-full"
-                  render={<Link href={`/books/${book._id}`}>View Details</Link>}
+                  render={
+                    <Link href={`/all-books/${book._id}`}>View Details</Link>
+                  }
                 />
               </div>
             </div>
@@ -80,3 +83,6 @@ export default async function AllBooksPage() {
     </div>
   );
 }
+
+
+
