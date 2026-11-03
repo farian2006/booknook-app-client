@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   BookMarked,
@@ -15,8 +15,20 @@ import {
   X,
 } from "lucide-react";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "../components/ui/popover";
+
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
+import { authClient } from "../lib/auth-client";
+
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", icon: BookOpen },
@@ -70,24 +82,65 @@ function NavLink({ href, label, icon, active, onNavigate }) {
   );
 }
 
+const handleLogOut = async () => {
+  await authClient.signOut({
+    fetchOptions: {
+      onSuccess: () => {
+       redirect("/")
+      },
+    },
+  });
+};
 function AuthButtons({ className }) {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <Link href="/login">
-      <Button variant="default">
-        <LogIn data-icon="inline-start" />
-        Login
-      </Button>
-      </Link>
-      <Link href="/signup">
-      <Button
-        variant="outline"
-        className="border-primary text-primary hover:bg-primary/10"
-      >
-        <CircleUserRound data-icon="inline-start" />
-        Register
-      </Button>
-        </Link>
+      {user ? (
+        <Popover>
+          <PopoverTrigger
+            render={
+              <button
+                type="button"
+                className="rounded-full"
+                aria-label="Open profile menu"
+              />
+            }
+          >
+            <Avatar>
+              <AvatarImage src={user?.image || undefined} />
+              <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>
+            </Avatar>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>
+              <PopoverTitle>{user?.name || "User"}</PopoverTitle>
+              <PopoverDescription>My Profile</PopoverDescription>
+            </PopoverHeader>
+            <Button variant="destructive" onClick={handleLogOut}>
+              Logout
+            </Button>
+          </PopoverContent>
+        </Popover>
+      ) : (
+        <>
+          <Link href="/login">
+            <Button variant="default">
+              <LogIn data-icon="inline-start" />
+              Login
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary/10"
+            >
+              <CircleUserRound data-icon="inline-start" />
+              Register
+            </Button>
+          </Link>
+        </>
+      )}
     </div>
   );
 }
