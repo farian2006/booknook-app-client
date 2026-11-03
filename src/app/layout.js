@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
 import { Suspense } from "react";
+import { ToastContainer } from 'react-toastify'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
           <Navbar />
         </Suspense>
         <main className="flex-1">{children}</main>
+        <ToastContainer />
         <Footer />
       </body>
     </html>
