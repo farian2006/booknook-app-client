@@ -73,10 +73,12 @@ function NavLink({ href, label, icon, active, onNavigate }) {
 function AuthButtons({ className }) {
   return (
     <div className={cn("flex items-center gap-2", className)}>
+      <Link href="/login">
       <Button variant="default">
         <LogIn data-icon="inline-start" />
         Login
       </Button>
+      </Link>
       <Link href="/signup">
       <Button
         variant="outline"
