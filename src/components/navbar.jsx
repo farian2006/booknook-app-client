@@ -15,8 +15,8 @@ import {
   X,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "../components/ui/button";
+import { cn } from "../lib/utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", icon: BookOpen },
@@ -77,6 +77,7 @@ function AuthButtons({ className }) {
         <LogIn data-icon="inline-start" />
         Login
       </Button>
+      <Link href="/signup">
       <Button
         variant="outline"
         className="border-primary text-primary hover:bg-primary/10"
@@ -84,6 +85,7 @@ function AuthButtons({ className }) {
         <CircleUserRound data-icon="inline-start" />
         Register
       </Button>
+        </Link>
     </div>
   );
 }

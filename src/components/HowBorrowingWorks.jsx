@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 
 const HowBorrowingWorks = () => {
   const steps = [
