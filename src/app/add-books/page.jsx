@@ -10,8 +10,8 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
 import {
   Select,
   SelectTrigger,
@@ -19,9 +19,9 @@ import {
   SelectContent,
   SelectList,
   SelectItem,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+} from "../../components/ui/select";
+import { Textarea } from "../../components/ui/textarea";
+import { Button } from "../../components/ui/button";
 
 export default function AddBooksPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);

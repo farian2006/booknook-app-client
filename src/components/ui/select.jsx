@@ -3,8 +3,7 @@
 import * as React from "react"
 import { Select } from "@base-ui/react/select"
 import { cva } from "class-variance-authority"
-import { cn } from "@/lib/utils"
-import { ChevronDown } from "lucide-react"
+import { cn } from "../../lib/utils"
 
 const selectTrigger = cva(
   "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>[data-slot=select-value]]:line-clamp-1",

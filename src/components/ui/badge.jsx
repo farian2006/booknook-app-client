@@ -24,6 +24,10 @@ const badgeVariants = cva(
         selfhelp: "border-transparent bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
         scifi: "border-transparent bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300",
         adventure: "border-transparent bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+        history: "border-transparent bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300",
+        mystery: "border-transparent bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+        biography: "border-transparent bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300",
+        nonfiction: "border-transparent bg-slate-100 text-slate-700 dark:bg-slate-900/30 dark:text-slate-300",
       },
     },
     defaultVariants: {

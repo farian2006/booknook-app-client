@@ -18,7 +18,7 @@ export function Footer() {
     <footer className="relative isolate overflow-hidden border-t border-violet-100">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/assets/background.png"
+          src="/assests/background.png"
           alt="Background"
           fill
           priority
