@@ -1,16 +1,22 @@
-"use cache";
 import Image from "next/image";
 import React from "react";
 import { FaFileInvoice } from "react-icons/fa";
 
 import BorrowBookDialog from "../../../components/BorrowBookDialog";
+import { auth } from "../../../lib/auth";
+import { headers } from "next/headers";
 
 export const instant = false;
 
 const BooksDetailsPage = async ({ params }) => {
   const { id } = await params;
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
   const res = await fetch(`http://localhost:5000/books/${id}`, {
+    method: "GET",
     cache: "no-store",
+    authorization : `Bearer ${token}`,
   });
   const book = await res.json();
 
@@ -60,7 +66,7 @@ const BooksDetailsPage = async ({ params }) => {
           <p className="text-gray-500">{book.email}</p>
         </div>
 
-        <div className= "flex justify-center md:justify-end">
+        <div className="flex justify-center md:justify-end">
           <BorrowBookDialog book={book} />
         </div>
       </div>
