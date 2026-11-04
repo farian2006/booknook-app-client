@@ -1,8 +1,9 @@
 "use cache";
-import { Button } from "@base-ui/react";
 import Image from "next/image";
 import React from "react";
 import { FaFileInvoice } from "react-icons/fa";
+
+import BorrowBookDialog from "../../../components/BorrowBookDialog";
 
 export const instant = false;
 
@@ -60,9 +61,7 @@ const BooksDetailsPage = async ({ params }) => {
         </div>
 
         <div className= "flex justify-center md:justify-end">
-          <Button className="bg-[#4f36c9] hover:bg-[#3f2aad] text-white rounded-[14px] px-7 py-6 text-base font-semibold">
-            Borrow Book →
-          </Button>
+          <BorrowBookDialog book={book} />
         </div>
       </div>
     </div>

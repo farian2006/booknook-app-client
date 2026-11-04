@@ -17,5 +17,5 @@ export async function proxy(request: NextRequest) {
 
 
 export const config = {
-  matcher: ['/add-books','/all-books/:path'],
+  matcher: ['/add-books','/all-books/:path','/my-books/:path*','/my-borrows/:path*'],
 }

@@ -35,7 +35,7 @@ const NAV_LINKS = [
   { href: "/all-books", label: "All Books", icon: BookMarked },
   { href: "/add-books", label: "Add Book", icon: Plus },
   { href: "/my-books", label: "My Books", icon: CircleUserRound },
-  { href: "/borrows", label: "My Borrows", icon: Repeat2 },
+  { href: "/my-borrows", label: "My Borrows", icon: Repeat2 },
 ];
 
 function isActive(pathname, href) {
