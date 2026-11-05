@@ -77,7 +77,7 @@ const MyBooksPage = () => {
           throw new Error("Your session has expired. Please log in again.");
         }
         return fetch(
-          `http://localhost:5000/my-books?userEmail=${encodeURIComponent(email)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/my-books?userEmail=${encodeURIComponent(email)}`,
           { cache: "no-store", headers: authHeaders },
         );
       })

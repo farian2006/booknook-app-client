@@ -61,7 +61,7 @@ const MyBorrowsPage = () => {
           throw new Error("Your session has expired. Please log in again.");
         }
         return fetch(
-          `http://localhost:5000/my-borrows?userEmail=${encodeURIComponent(email)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/my-borrows?userEmail=${encodeURIComponent(email)}`,
           { cache: "no-store", headers: authHeaders },
         );
       })

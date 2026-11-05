@@ -6,10 +6,6 @@ import { mongodbAdapter } from "@better-auth/mongo-adapter";
 const client = new MongoClient(process.env.MONGODB_URL!);
 const db = client.db("booknook-app");
 
-// Issuer/audience signed into every JWT by the jwt plugin.
-// The backend (booknook-app-server) verifies against the same values:
-// issuer = this app's origin, audience = its API origin. Keep them in sync
-// with the .env files of BOTH projects (BETTER_AUTH_URL, JWT_AUDIENCE).
 const jwtIssuer = new URL(process.env.BETTER_AUTH_URL!).origin;
 
 export const auth = betterAuth({

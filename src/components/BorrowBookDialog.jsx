@@ -44,7 +44,7 @@ export function BorrowBookDialog({ book }) {
         return;
       }
 
-      const res = await fetch(`http://localhost:5000/my-borrows`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-borrows`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -33,7 +33,7 @@ function DeleteBookDialog({ book, open, onOpenChange, onDeleted }) {
       }
 
       const res = await fetch(
-        `http://localhost:5000/books/${book._id}?email=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}?email=${encodeURIComponent(
           book.email ?? "",
         )}`,
         { method: "DELETE", headers: authHeaders },

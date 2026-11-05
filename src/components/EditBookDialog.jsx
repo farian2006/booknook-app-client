@@ -47,7 +47,7 @@ function EditBookDialog({ book, open, onOpenChange, onSaved }) {
       }
 
       const res = await fetch(
-        `http://localhost:5000/books/${book._id}?userEmail=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}?userEmail=${encodeURIComponent(
           book.email ?? "",
         )}`,
         {

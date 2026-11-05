@@ -9,7 +9,7 @@ import Link from "next/link";
 export const instant = false;
 
 const Featured = async () => {
-  const res = await fetch("http://localhost:5000/featured-books", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/featured-books`, {
     cache: "no-store",
   });
   const featuredBooks = await res.json();
