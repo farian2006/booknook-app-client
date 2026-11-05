@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import HowBorrowingWorks from "../../components/HowBorrowingWorks";
 import { authClient } from "../../lib/auth-client";
 import { getApiAuthHeaders } from "../../lib/jwt-browser";
+import { API_URL } from "../../lib/api";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
@@ -61,7 +62,7 @@ const MyBorrowsPage = () => {
           throw new Error("Your session has expired. Please log in again.");
         }
         return fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/my-borrows?userEmail=${encodeURIComponent(email)}`,
+          `${API_URL}/my-borrows?userEmail=${encodeURIComponent(email)}`,
           { cache: "no-store", headers: authHeaders },
         );
       })
@@ -104,7 +105,7 @@ const MyBorrowsPage = () => {
 
       const returnedDate = new Date().toISOString();
       const res = await fetch(
-        `http://localhost:5000/my-borrows/${borrow._id}?userEmail=${encodeURIComponent(
+        `${API_URL}/my-borrows/${borrow._id}?userEmail=${encodeURIComponent(
           email ?? "",
         )}`,
         {

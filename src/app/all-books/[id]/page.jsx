@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import BorrowBookDialog from "../../../components/BorrowBookDialog";
 import { getBearerToken } from "../../../lib/jwt-server";
+import { API_URL } from "../../../lib/api";
 
 export const instant = false;
 
@@ -12,7 +13,7 @@ const BooksDetailsPage = async ({ params }) => {
 
   const token = await getBearerToken();
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${id}`, {
+  const res = await fetch(`${API_URL}/books/${id}`, {
     method: "GET",
     cache: "no-store",
     headers: {

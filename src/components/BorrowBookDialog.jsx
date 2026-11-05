@@ -17,6 +17,7 @@ import {
 } from "./ui/dialog";
 import { authClient } from "../lib/auth-client";
 import { getApiAuthHeaders } from "../lib/jwt-browser";
+import { API_URL } from "../lib/api";
 
 export function BorrowBookDialog({ book }) {
   const [open, setOpen] = useState(false);
@@ -44,7 +45,7 @@ export function BorrowBookDialog({ book }) {
         return;
       }
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-borrows`, {
+      const res = await fetch(`${API_URL}/my-borrows`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

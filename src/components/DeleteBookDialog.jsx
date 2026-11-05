@@ -5,6 +5,7 @@ import { Trash2 } from "lucide-react";
 import { toast } from "react-toastify";
 
 import { getApiAuthHeaders } from "../lib/jwt-browser";
+import { API_URL } from "../lib/api";
 
 import {
   AlertDialog,
@@ -33,7 +34,7 @@ function DeleteBookDialog({ book, open, onOpenChange, onDeleted }) {
       }
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}?email=${encodeURIComponent(
+        `${API_URL}/books/${book._id}?email=${encodeURIComponent(
           book.email ?? "",
         )}`,
         { method: "DELETE", headers: authHeaders },

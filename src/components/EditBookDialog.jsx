@@ -5,6 +5,7 @@ import { ChevronDown, Pencil } from "lucide-react";
 import { toast } from "react-toastify";
 
 import { getApiAuthHeaders } from "../lib/jwt-browser";
+import { API_URL } from "../lib/api";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -47,7 +48,7 @@ function EditBookDialog({ book, open, onOpenChange, onSaved }) {
       }
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}?userEmail=${encodeURIComponent(
+        `${API_URL}/books/${book._id}?userEmail=${encodeURIComponent(
           book.email ?? "",
         )}`,
         {

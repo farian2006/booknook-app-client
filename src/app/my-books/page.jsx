@@ -16,6 +16,7 @@ import "react-toastify/ReactToastify.css";
 
 import { authClient } from "../../lib/auth-client";
 import { getApiAuthHeaders } from "../../lib/jwt-browser";
+import { API_URL } from "../../lib/api";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
@@ -77,7 +78,7 @@ const MyBooksPage = () => {
           throw new Error("Your session has expired. Please log in again.");
         }
         return fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/my-books?userEmail=${encodeURIComponent(email)}`,
+          `${API_URL}/my-books?userEmail=${encodeURIComponent(email)}`,
           { cache: "no-store", headers: authHeaders },
         );
       })

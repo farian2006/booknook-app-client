@@ -21,6 +21,7 @@ import { Textarea } from "../../components/ui/textarea";
 import { Button } from "../../components/ui/button";
 import { authClient } from "../../lib/auth-client";
 import { getApiAuthHeaders } from "../../lib/jwt-browser";
+import { API_URL } from "../../lib/api";
 
 export default function AddBooksPage() {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function AddBooksPage() {
         return;
       }
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-book`, {
+      const res = await fetch(`${API_URL}/add-book`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
