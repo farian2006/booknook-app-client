@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Trash2 } from "lucide-react";
 import { toast } from "react-toastify";
 
+import { getApiAuthHeaders } from "../lib/jwt-browser";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,11 +26,17 @@ function DeleteBookDialog({ book, open, onOpenChange, onDeleted }) {
 
     setIsDeleting(true);
     try {
+      const authHeaders = await getApiAuthHeaders();
+      if (!authHeaders) {
+        toast.error("Your session has expired. Please log in again.");
+        return;
+      }
+
       const res = await fetch(
         `http://localhost:5000/books/${book._id}?email=${encodeURIComponent(
           book.email ?? "",
         )}`,
-        { method: "DELETE" },
+        { method: "DELETE", headers: authHeaders },
       );
 
       if (!res.ok) {

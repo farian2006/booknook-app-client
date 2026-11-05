@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ChevronDown, Pencil } from "lucide-react";
 import { toast } from "react-toastify";
 
+import { getApiAuthHeaders } from "../lib/jwt-browser";
+
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -38,6 +40,12 @@ function EditBookDialog({ book, open, onOpenChange, onSaved }) {
 
     setIsSaving(true);
     try {
+      const authHeaders = await getApiAuthHeaders();
+      if (!authHeaders) {
+        toast.error("Your session has expired. Please log in again.");
+        return;
+      }
+
       const res = await fetch(
         `http://localhost:5000/books/${book._id}?userEmail=${encodeURIComponent(
           book.email ?? "",
@@ -46,6 +54,7 @@ function EditBookDialog({ book, open, onOpenChange, onSaved }) {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            ...authHeaders,
           },
           body: JSON.stringify({
             title: data.title,

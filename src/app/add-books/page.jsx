@@ -2,13 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  User,
-  Mail,
-  ChevronDown,
-  Plus,
-  Image as ImageIcon,
-} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { User, Mail, ChevronDown, Plus } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
@@ -22,9 +19,15 @@ import {
 } from "../../components/ui/select";
 import { Textarea } from "../../components/ui/textarea";
 import { Button } from "../../components/ui/button";
+import { authClient } from "../../lib/auth-client";
+import { getApiAuthHeaders } from "../../lib/jwt-browser";
 
 export default function AddBooksPage() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,13 +39,36 @@ export default function AddBooksPage() {
 
     setIsSubmitting(true);
     try {
+      const authHeaders = await getApiAuthHeaders();
+
+      if (!authHeaders) {
+        toast.error("Your session has expired. Please log in again.");
+        router.push("/login");
+        return;
+      }
+
       const res = await fetch("http://localhost:5000/add-book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          ...authHeaders,
         },
         body: JSON.stringify(data),
       });
+
+      if (!res.ok) {
+        let message = "Something went wrong. Please try again.";
+        try {
+          const errorBody = await res.json();
+          if (errorBody?.message) message = errorBody.message;
+        } catch {}
+        throw new Error(message);
+      }
+
+      toast.success("Book added successfully!");
+      form.reset();
+    } catch (error) {
+      toast.error(error.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -50,6 +76,8 @@ export default function AddBooksPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      <ToastContainer position="top-right" autoClose={3000} newestOnTop />
+
       <div className="rounded-xl border border-input bg-card text-card-foreground shadow-sm p-6 sm:p-8">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
           <div className="w-full lg:w-1/3 flex flex-col items-center justify-center">
@@ -99,7 +127,7 @@ export default function AddBooksPage() {
                       <SelectItem value="non-fiction">Non-Fiction</SelectItem>
                       <SelectItem value="mystery">Mystery</SelectItem>
                       <SelectItem value="romance">Romance</SelectItem>
-                        <SelectItem value="history">History</SelectItem>
+                      <SelectItem value="history">History</SelectItem>
                       <SelectItem value="science-fiction">
                         Science Fiction
                       </SelectItem>
@@ -134,10 +162,13 @@ export default function AddBooksPage() {
                   aria-hidden
                 />
                 <Input
+                  key={user?.name ?? "loading"}
                   type="text"
                   name="userName"
                   placeholder="John Doe"
+                  defaultValue={user?.name ?? ""}
                   className="pl-10"
+                  required
                 />
               </div>
               <div className="relative">
@@ -146,10 +177,14 @@ export default function AddBooksPage() {
                   aria-hidden
                 />
                 <Input
+                  key={user?.email ?? "loading"}
                   type="email"
                   name="email"
                   placeholder="john@example.com"
+                  defaultValue={user?.email ?? ""}
                   className="pl-10"
+                  required
+                  readOnly={Boolean(user)}
                 />
               </div>
             </div>

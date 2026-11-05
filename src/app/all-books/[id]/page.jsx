@@ -1,23 +1,32 @@
 import Image from "next/image";
-import React from "react";
 import { FaFileInvoice } from "react-icons/fa";
+import { notFound } from "next/navigation";
 
 import BorrowBookDialog from "../../../components/BorrowBookDialog";
-import { auth } from "../../../lib/auth";
-import { headers } from "next/headers";
+import { getBearerToken } from "../../../lib/jwt-server";
 
 export const instant = false;
 
 const BooksDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const {token} = await auth.api.getToken({
-    headers: await headers(),
-  });
+
+  const token = await getBearerToken();
+
   const res = await fetch(`http://localhost:5000/books/${id}`, {
     method: "GET",
     cache: "no-store",
-    authorization : `Bearer ${token}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
+
+  if (!res.ok) {
+    if (res.status === 404) {
+      notFound();
+    }
+    throw new Error(`Failed to load book details (${res.status})`);
+  }
+
   const book = await res.json();
 
   return (

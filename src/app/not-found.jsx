@@ -17,8 +17,8 @@ export default function NotFound() {
         <h2 className="text-2xl font-bold mt-4">Page Not Found</h2>
 
         <p className="text-muted-foreground mt-4">
-          Sorry! We couldn't find the page you're looking for. It may have been
-          moved or doesn't exist.
+          Sorry! We couldn&apos;t find the page you&apos;re looking for. It may have been
+          moved or doesn&apos;t exist.
         </p>
 
         <div className="mt-8">

@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { authClient } from "../lib/auth-client";
+import { getApiAuthHeaders } from "../lib/jwt-browser";
 
 export function BorrowBookDialog({ book }) {
   const [open, setOpen] = useState(false);
@@ -37,10 +38,17 @@ export function BorrowBookDialog({ book }) {
 
     setIsSubmitting(true);
     try {
+      const authHeaders = await getApiAuthHeaders();
+      if (!authHeaders) {
+        toast.error("Your session has expired. Please log in again.");
+        return;
+      }
+
       const res = await fetch(`http://localhost:5000/my-borrows`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          ...authHeaders,
         },
         body: JSON.stringify({
           bookId: book?._id,

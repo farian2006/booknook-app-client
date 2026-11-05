@@ -122,7 +122,7 @@ export default function LoginPage() {
                     Log In
                   </Button>
                   <FieldDescription className="text-center">
-                   Don't have an account?
+                   Don&apos;t have an account?
                     <a href="/signup" className="text-primary hover:underline">
                       Register
                     </a>

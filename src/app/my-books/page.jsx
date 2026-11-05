@@ -15,6 +15,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 
 import { authClient } from "../../lib/auth-client";
+import { getApiAuthHeaders } from "../../lib/jwt-browser";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
@@ -69,10 +70,17 @@ const MyBooksPage = () => {
 
   const fetchBooks = useCallback(() => {
     if (!email) return;
-    fetch(
-      `http://localhost:5000/my-books?userEmail=${encodeURIComponent(email)}`,
-      { cache: "no-store" },
-    )
+
+    getApiAuthHeaders()
+      .then((authHeaders) => {
+        if (!authHeaders) {
+          throw new Error("Your session has expired. Please log in again.");
+        }
+        return fetch(
+          `http://localhost:5000/my-books?userEmail=${encodeURIComponent(email)}`,
+          { cache: "no-store", headers: authHeaders },
+        );
+      })
       .then(async (res) => {
         if (!res.ok) {
           throw new Error(`Failed to fetch your books (${res.status})`);
