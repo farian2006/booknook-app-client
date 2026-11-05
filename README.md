@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 Library – Online Library Management System
 
-## Getting Started
+A modern and user-friendly library management platform where readers can explore books, borrow their favorite titles, and manage their personal book collections. Users can also contribute to the library by adding and managing their own books.
 
-First, run the development server:
+🔗 **Live Website:** [Visit Library](https://booknook-app-rho.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ✨ Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 📖 **Explore Books:** Browse a collection of books displayed in a clean and responsive card-based layout.
+- 🔍 **Book Details:** View detailed information about each book, including its title, author, category, and description.
+- 🔐 **Authentication System:** Secure user registration and login functionality powered by Better Auth.
+- ➕ **Add New Books:** Authenticated users can contribute to the library by adding new books.
+- 📚 **My Books:** Manage your personally added books with options to update or delete them.
+- 📥 **Borrow Books:** Borrow books from the library and keep track of your borrowed books.
+- 👤 **Private Routes:** Access protected pages and personal book collections securely.
+- 📱 **Responsive Design:** Enjoy a smooth browsing experience across desktops, tablets, and mobile devices.
+- 🔔 **Interactive Notifications:** Get feedback for important actions through toast notifications.
 
-## Learn More
+## 🛠️ Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+| Technology | Purpose |
+|---|---|
+| Next.js | Frontend framework |
+| React.js | User interface |
+| Tailwind CSS | Styling |
+| shadcn/ui | Reusable UI components |
+| Better Auth | Authentication |
+| MongoDB | Database |
+| React Toastify | Notifications |
+| Lucide React | Icons |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## 📂 Project Purpose
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project aims to make book management easier by providing a centralized platform for readers to discover, borrow, and manage books. It combines a simple user experience with authentication and database integration to deliver a practical library management solution.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 Developer
+
+**Farian Tazwar**
+
+- GitHub: [farian2006](https://github.com/farian2006)
+- LinkedIn: [Farian Tazwar](https://www.linkedin.com/)
+
+---
+
+⭐ If you find this project interesting, consider giving it a star on GitHub!
+
+**Happy Reading! 📚**
